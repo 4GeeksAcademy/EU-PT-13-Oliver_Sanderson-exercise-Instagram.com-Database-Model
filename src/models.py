@@ -49,31 +49,23 @@ class FavoritePlanet(Base):
     planet_id = Column(Integer, ForeignKey('planet.id'))
     planet = relationship(Planet)
 
+class Vehicle(Base):
+    __tablename__ = 'vehicle'
+    id = Column(Integer, primary_key=True)
+    name = Column(String)
+    model = Column(String)
+    vehicle_class = Column(String)
+    manufacturer = Column(String)
+    crew = Column(Integer)
+    passengers = Column(Integer)
 
-
-
-
-
-
-
-
-# class Person(Base):
-#     __tablename__ = 'person'
-#     # Here we define columns for the table person
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     name = Column(String(250), nullable=False)
-
-# class Address(Base):
-#     __tablename__ = 'address'
-#     # Here we define columns for the table address.
-#     # Notice that each column is also a normal Python instance attribute.
-#     id = Column(Integer, primary_key=True)
-#     street_name = Column(String(250))
-#     street_number = Column(String(250))
-#     post_code = Column(String(250), nullable=False)
-#     person_id = Column(Integer, ForeignKey('person.id'))
-#     person = relationship(Person)
+class FavoriteVehicle(Base):
+    __tablename__ = 'favorite_vehicle'
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey('user.id'))
+    user = relationship(User)
+    vehicle_id = Column(Integer, ForeignKey('vehicle.id'))
+    vehicle = relationship(Vehicle)
 
     def to_dict(self):
         return {}
